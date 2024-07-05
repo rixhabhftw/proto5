@@ -53,20 +53,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const surveyForm = document.getElementById('surveyForm');
     questions.forEach((q, index) => {
         const div = document.createElement('div');
+        div.className = "form-group";
         div.innerHTML = `
             <label>${index + 1}. ${q.question}</label>
-            <input type="radio" name="q${index}" value="1"> 1
-            <input type="radio" name="q${index}" value="2"> 2
-            <input type="radio" name="q${index}" value="3"> 3
-            <input type="radio" name="q${index}" value="4"> 4
-            <input type="radio" name="q${index}" value="5"> 5
-            <br><br>
+            <div>
+                <input type="radio" name="q${index}" value="1"> 1
+                <input type="radio" name="q${index}" value="2"> 2
+                <input type="radio" name="q${index}" value="3"> 3
+                <input type="radio" name="q${index}" value="4"> 4
+                <input type="radio" name="q${index}" value="5"> 5
+            </div>
         `;
         surveyForm.appendChild(div);
     });
 
-    surveyForm.innerHTML += '<button type="submit">Submit</button>';
-    
+    const submitButton = document.createElement('button');
+    submitButton.type = "submit";
+    submitButton.className = "btn btn-primary btn-block";
+    submitButton.innerText = "Submit";
+    surveyForm.appendChild(submitButton);
+
     surveyForm.addEventListener('submit', function(e) {
         e.preventDefault();
         const formData = new FormData(surveyForm);
